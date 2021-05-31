@@ -2,6 +2,7 @@ import random
 
 import discord
 from discord.ext import commands
+import asyncio
 
 import details
 from Commands import quotes
@@ -13,6 +14,7 @@ from Commands import stupid_bot
 from Commands import random_events
 from Commands import encourage
 from Commands import bot_info
+from Commands import mute
 
 prefix = details.server_prefix
 token = details.token
@@ -102,6 +104,22 @@ async def bot_bio(ctx):
 async def help(ctx):
     embed = bot_info.bot_help()
     await ctx.send(embed=embed)
+
+
+@client.command(aliases=['mute'])
+async def mute_func(ctx, member: discord.Member, time=None):
+    if ctx.author.guild_permissions.manage_roles:
+        role = discord.utils.get(ctx.guild.roles, name="muted")
+        roles_list = member.roles
+        await member.remove_roles(*roles_list[1:])
+        await member.add_roles(role)
+        if time is not None:
+            await ctx.reply(f'{member} has been muted for {time}')
+            await asyncio.sleep(mute.get_time(time))
+            await member.remove_roles(role)
+            await member.add_roles(*roles_list[1:])
+        else:
+            await ctx.reply(f'{member} has been muted')
 
 
 @client.event
