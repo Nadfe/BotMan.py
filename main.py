@@ -12,6 +12,7 @@ from Commands.ask import ask_qn
 from Commands import stupid_bot
 from Commands import random_events
 from Commands import encourage
+from Commands import bot_info
 
 prefix = details.server_prefix
 token = details.token
@@ -34,12 +35,6 @@ async def hello(ctx):
 @client.command()
 async def ping(ctx):
     await ctx.reply('Pong!')
-
-
-@client.command()
-async def kill(ctx):
-    await ctx.send('closing client')
-    await client.close()
 
 
 @client.command()
@@ -99,21 +94,13 @@ async def roll(ctx):
 
 
 @client.command()
+async def bot_bio(ctx):
+    await ctx.reply(bot_info.bot_bio)
+
+
+@client.command()
 async def help(ctx):
-    embed = discord.Embed(colour=discord.Colour.blue())
-    embed.set_author(name='List of commands')
-    embed.add_field(name=f'{prefix}ping', value='Replies with "Pong!"', inline=False)
-    embed.add_field(name=f'{prefix}hello', value='Says hello', inline=False)
-    embed.add_field(name=f'{prefix}userid [user(optional)]', value='Replies with the user\'s ID', inline=False)
-    embed.add_field(name=f'{prefix}inspire', value='Sends a random quote', inline=False)
-    embed.add_field(name=f'{prefix}link [name]', value=f'Use `{prefix}link list` for a list of links', inline=False)
-    embed.add_field(name=f'{prefix}goodmorning', value='Wishes a good morning to you, because it\'s your friend', inline=False)
-    embed.add_field(name=f'{prefix}goodafternoon', value='Wishes a good afternoon to you, because it\'s your friend', inline=False)
-    embed.add_field(name=f'{prefix}goodevening', value='Wishes a good evening to you, because it\'s your friend', inline=False)
-    embed.add_field(name=f'{prefix}goodnight', value='Wishes a good night to you, because it\'s your friend', inline=False)
-    embed.add_field(name=f'{prefix}flip', value='Flips a coin, and tells you the result', inline=False)
-    embed.add_field(name=f'{prefix}roll', value='Rolls a die, and tells you the result', inline=False)
-    embed.add_field(name=f'{prefix}ask', value='Gives honest opinion in the form of yes/no', inline=False)
+    embed = bot_info.bot_help()
     await ctx.send(embed=embed)
 
 
