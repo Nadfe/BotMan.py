@@ -1,1 +1,2 @@
-server_prefix = 'bm-'
+server_prefix = '$'
+token = ''
