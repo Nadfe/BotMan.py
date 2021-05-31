@@ -14,7 +14,7 @@ from Commands import random_events
 from Commands import encourage
 
 prefix = details.server_prefix
-token = 'ODQ4NTI5NDIwNzE2ODY3NjI1.YLN8mg.1F6QbPjOJR4w1xF-LsJel2WU06Q'
+token = details.token
 rickroll = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
 intents = discord.Intents.all()
 client = commands.Bot(command_prefix=prefix, intents=intents, help_command=None)
