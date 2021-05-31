@@ -118,6 +118,7 @@ async def mute_func(ctx, member: discord.Member, time=None):
             await asyncio.sleep(mute.get_time(time))
             await member.remove_roles(role)
             await member.add_roles(*roles_list[1:])
+            await ctx.send(f'{member} has been unmuted.')
         else:
             await ctx.reply(f'{member} has been muted')
 
