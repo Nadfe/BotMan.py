@@ -37,7 +37,7 @@ async def hello(ctx):
 @client.command()
 async def ping(ctx):
     before = time.monotonic()
-    message = await ctx.send("Pong!")
+    message = await ctx.reply("Pong!")
     ping_time = (time.monotonic() - before) * 1000
     await message.edit(content=f"Pong! `Latency: {int(ping_time)}ms`")
 
